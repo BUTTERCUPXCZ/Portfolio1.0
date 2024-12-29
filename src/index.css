@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: #0d1117; /* GitHub's dark mode background color */
+  color: #c9d1d9; /* Light gray text color for contrast */
+}
+
+h2 {
+  @apply text-xl md:text-4xl;
+  color: #f0f6fc; /* Slightly brighter text for headings */
+}
+
+p {
+  @apply text-xl tracking-tight leading-relaxed;
+  color: #c9d1d9; /* Body text color */
+}
+
+span {
+  @apply text-blue-600;
+}
+
+.shiny-effect {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(4, 25, 39, 0.2), transparent 70%);
+}
+
+.bg-primary-color {
+  background-color: #161b22; /* Slightly lighter dark shade for sections */
+}
+
+.border-primary-color {
+  border-color: #30363d; /* Border color similar to GitHub's separator lines */
+}
+
+.text-secondary-color {
+  color: #8b949e; /* Muted secondary text color */
+}
+
+.card {
+  @apply p-6 rounded-lg shadow-md;
+  background-color: #161b22; /* Same as primary background for cards */
+  color: #c9d1d9;
+  border: 1px solid #30363d; /* Subtle border for card separation */
+}
+
+.bg-primary-color{
+  @apply bg-blue-600;
+}
