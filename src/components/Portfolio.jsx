@@ -1,16 +1,16 @@
 import React from 'react';
-import project1 from '../assets/project2.png';
-import project2 from '../assets/project1.png';
+import project1 from '../assets/project1.png'
+import project2 from '../assets/project2.png';
 import project3 from '../assets/project3.png';
 import project4 from '../assets/project4.png';
-import project5 from '../assets/project3.png';
+import project5 from '../assets/project5.png';
 import { AiFillGithub } from 'react-icons/ai';
 import Reveal from './Reveal';
 
 const projects = [
   {
     img: project1,
-    title: 'UM Student Registration System',
+    title: 'POST SYSTEM FOR JJ MARKETING',
     description: 'A Java application and we are using MYSQL as our database.',
     links: {
       site: '#',
@@ -19,7 +19,7 @@ const projects = [
   },
   {
     img: project2,
-    title: 'POS System for JJ MARKETING',
+    title: 'UM STUDENT REGISTRATION SYSTEM',
     description: 'A system Proposal for JJ Marketing the language we used to build this project is Java and the backend is MYSQL',
     links: {
       site: '#',
