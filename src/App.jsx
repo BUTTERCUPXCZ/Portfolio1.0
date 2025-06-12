@@ -1,11 +1,14 @@
-import Contact from "./components/Contact";
-import Experience from "./components/Experience";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
+import React, { Suspense, lazy } from "react";
 import Navbar from "./components/Navbar";
-import Portfolio from "./components/Portfolio";
-import Skills from "./components/Skills";
+import Hero from "./components/Hero";
 import FloatingElements from "./components/FloatingElements";
+
+// Lazy load components that are below the fold
+const Skills = lazy(() => import("./components/Skills"));
+const Experience = lazy(() => import("./components/Experience"));
+const Portfolio = lazy(() => import("./components/Portfolio"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 export default function App() {
   return(
@@ -13,12 +16,13 @@ export default function App() {
     <FloatingElements />
     <Navbar/>
     <Hero />
-    <Skills />
-    <Experience />
-    <Portfolio />
-    <Contact/>
-    <Footer />
-
+    <Suspense fallback={<div className="h-20 flex items-center justify-center"><div className="text-blue-400">Loading...</div></div>}>
+      <Skills />
+      <Experience />
+      <Portfolio />
+      <Contact/>
+      <Footer />
+    </Suspense>
     </>
   )
 }

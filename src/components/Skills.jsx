@@ -1,5 +1,4 @@
-import { div } from 'framer-motion/client';
-import React from 'react';
+import React, { memo } from 'react';
 import Reveal from './Reveal';
 import {
   DiHtml5,
@@ -11,7 +10,6 @@ import {
   DiMysql,
   DiGithubBadge,
   DiLaravel,
-
 } from 'react-icons/di';
 
 const skills = [
@@ -37,7 +35,7 @@ const skills = [
   },
 ];
 
-const Skills = () => {
+const Skills = memo(() => {
   return (
     <>
       <div
@@ -56,14 +54,14 @@ const Skills = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {skills.map((skill, index) => (
-            <div key={index} className="group relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+            <div key={index} className="group relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-400/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <h3 className="text-2xl font-bold mb-6 text-center text-blue-400 group-hover:text-blue-300 transition-colors">
                 {skill.category}
               </h3>
               <div className="grid grid-cols-2 gap-6">
                 {skill.technologies.map((tech, indx) => (
-                  <div key={indx} className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/40 hover:bg-gray-700/40 transition-colors group-hover:scale-105 transform duration-200">
+                  <div key={indx} className="flex items-center space-x-3 p-3 rounded-lg bg-gray-800/40 hover:bg-gray-700/40 transition-colors duration-200">
                     <span className="text-3xl">{tech.icon}</span>
                     <span className="font-medium">{tech.name}</span>
                   </div>
@@ -76,6 +74,8 @@ const Skills = () => {
       </div>
     </>
   );
-};
+});
+
+Skills.displayName = 'Skills';
 
 export default Skills;
