@@ -29,13 +29,6 @@ const Contact = () => {
                   </h3>
                  <p className='text-sm text-gray-400 font-medium'>Years Experience</p>
                </div>
-               
-               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 text-center'>
-                  <h3 className='text-3xl font-black text-white mb-2'>10
-                     <span className="text-blue-400">+</span>
-                  </h3>
-                 <p className='text-sm text-gray-400 font-medium'>Happy Clients</p>
-               </div>
             </div>
         </div>
 
