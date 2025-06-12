@@ -5,38 +5,36 @@ import Reveal from './Reveal';
 
 const Contact = () => {
   return (
-    <div className='px-6 max-w-[1200px] mx-auto md:my-12' id='contact'>
+    <div className='px-6 max-w-[1200px] mx-auto md:my-20' id='contact'>
      <Reveal>
-     <div className='grid md:grid-cols-2 place-items-center'> 
-        <div>
-           <div className='text-gray-300 my-3'>
-            <h3 className='text-4xl font-semibold mb-5'>About Me</h3>
-            <p className='text-justify leading-7 w-11/12 mx-auto'>
+     <div className='grid md:grid-cols-2 gap-12 place-items-center'> 
+        <div className="space-y-8">
+           <div className='text-gray-300'>
+            <h3 className='text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'>About Me</h3>
+            <p className='text-gray-400 text-lg leading-relaxed max-w-lg'>
             As a dedicated Third-year Computer Science student, I am focused on building a solid foundation in software engineering. I aim to apply these skills in internships and collaborative projects, preparing myself for a successful career in tech.
             </p>
            </div>
-            <div className='flex mt-10 items-center gap-7'>
-               <div className='bg-gray-800/40 p-4 rounded-lg'>
-                  <h3 className='md:text-3xl text-2xl font-semibold text-white'>11
-                     <span>+</span>
+            <div className='grid grid-cols-3 gap-6'>
+               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 text-center'>
+                  <h3 className='text-3xl font-black text-white mb-2'>11
+                     <span className="text-blue-400">+</span>
                   </h3>
-                 <p className='text-xs md:text-base'><span>Projects</span></p>
-
+                 <p className='text-sm text-gray-400 font-medium'>Projects</p>
                </div>
 
-               <div className='bg-gray-800/40 p-5 rounded-lg'>
-                  <h3 className='md:text-3xl text-2xl font-semibold text-white'>3
-                     <span>+</span>
+               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 text-center'>
+                  <h3 className='text-3xl font-black text-white mb-2'>3
+                     <span className="text-blue-400">+</span>
                   </h3>
-                 <p className='text-xs md:text-base'><span>years of Experience</span></p>
-
+                 <p className='text-sm text-gray-400 font-medium'>Years Experience</p>
                </div>
-               <div className='bg-gray-800/40 p-5 rounded-lg'>
-                  <h3 className='md:text-3xl text-2xl font-semibold text-white'>10
-                     <span>+</span>
+               
+               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 text-center'>
+                  <h3 className='text-3xl font-black text-white mb-2'>10
+                     <span className="text-blue-400">+</span>
                   </h3>
-                 <p className='text-xs md:text-base'><span>Happy Clients</span></p>
-
+                 <p className='text-sm text-gray-400 font-medium'>Happy Clients</p>
                </div>
             </div>
         </div>
@@ -44,41 +42,43 @@ const Contact = () => {
            <form 
            action="https://getform.io/f/alllnlpa"
            method = "POST"
-           className="max-w-6xl p-5 md:p-12"
+           className="w-full max-w-lg bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm"
            id="form"
            >
 
-            <p className='text-gray-100 font-bold text-xl mb-2'>
-              Let's connect
-            </p>
-            <input 
-            type="text"
-            id='name'
-            placeholder='Your Name ...'
-            name='name'
-            className='mb-2 w-full rounded-md border border-blue-600 py-2 pl-2 pr-4'    
-            />
+            <h4 className='text-white font-bold text-2xl mb-6 text-center'>
+              Let's Connect
+            </h4>
+            
+            <div className="space-y-4">
+              <input 
+              type="text"
+              id='name'
+              placeholder='Your Name'
+              name='name'
+              className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors'    
+              />
 
-          <input 
-            type="text"
-            id='name'
-            placeholder='Your Email ...'
-            name='name'
-            className='mb-2 w-full rounded-md border border-blue-600 py-2 pl-2 pr-4'    
-            />
+              <input 
+                type="email"
+                id='email'
+                placeholder='Your Email'
+                name='email'
+                className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors'    
+                />
 
-          <textarea
-            type="text"
-            id='name'
-            placeholder='Your Message ...'
-            cols='30'
-            rows='4'
-            name='name'
-            className='mb-2 w-full rounded-md border border-blue-600 py-2 pl-2 pr-4'    
-            />
+              <textarea
+                id='message'
+                placeholder='Your Message'
+                rows='5'
+                name='message'
+                className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors resize-none'    
+                />
+            </div>
+            
             <button
               type = 'submit'
-              className='w-full py-3 rounded-md text-gray-100 font-semibond text-xl bg-primary-color' 
+              className='w-full mt-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105' 
             >
                 Send Message
             </button>

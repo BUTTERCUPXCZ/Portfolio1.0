@@ -57,48 +57,62 @@ const projects = [
 
 const Portfolio = () => {
   return (
-    <div className="max-w-[1000px] mx-auto p-6 md:my-20" id="portfolio">
-      <h3 className="text-3xl font-bold text-gray-200 mb-8">Portfolio</h3>
-    {projects.map((project, index) => ( 
-        <Reveal>
-        <div
-          key={index}
-          className={`flex flex-col md:flex-row ${
-            index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-          } mb-12`}
-        >
-          {/* Image Section */}
-          <div className="w-full md:w-1/2 p-4">
-            <img
-              src={project.img}
-              alt={project.title}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
-            />
-          </div>
+    <div className="max-w-[1200px] mx-auto p-6 md:my-20" id="portfolio">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+          Featured Projects
+        </h3>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          A showcase of my technical expertise through innovative solutions and creative problem-solving
+        </p>
+      </div>
+      
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <Reveal key={index}>
+            <div className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl overflow-hidden border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              
+              {/* Image Section */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              </div>
 
-          {/* Description Section */}
-          <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
-            <h3 className="text-2xl font-semibold text-gray-200 mb-4">
-              {project.title}
-            </h3>
-            <p className="text-gray-200 mb-4">{project.description}</p>
+              {/* Content Section */}
+              <div className="p-6 relative z-10">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  {project.description}
+                </p>
 
-            {/* Links */}
-            <div className="flex space-x-4">
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 bg-slate-600 text-gray-200 rounded-lg hover:bg-slate-700 transition duration-300 flex items-center space-x-2"
-              >
-                <AiFillGithub className="text-xl" />
-                <span className='text-gray-200'>GitHub</span>
-              </a>
+                {/* Links */}
+                <div className="flex space-x-4 relative z-10">
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-300 font-medium cursor-pointer shadow-md hover:shadow-lg transform hover:scale-105"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.links.github, '_blank');
+                    }}
+                  >
+                    <AiFillGithub className="text-lg" />
+                    <span className='text-white'>View Code</span>
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        </Reveal>
-      ))}
+          </Reveal>
+        ))}
+      </div>
     </div>
   );
 };

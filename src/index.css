@@ -2,20 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Space Grotesk", sans-serif;
-  background-color: #000000; /* GitHub's dark mode background color */
-  color: #c9d1d9; /* Light gray text color for contrast */
+  background-color: #000000;
+  color: #c9d1d9;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #7c3aed);
 }
 
 h2 {
   @apply text-xl md:text-4xl;
-  color: #f0f6fc; /* Slightly brighter text for headings */
+  color: #f0f6fc;
 }
 
 p {
   @apply text-xl tracking-tight leading-relaxed;
-  color: #c9d1d9; /* Body text color */
+  color: #c9d1d9;
 }
 
 span {
@@ -27,28 +58,94 @@ span {
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(4, 25, 39, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.1), transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .bg-primary-color {
-  background-color: #161b22; /* Slightly lighter dark shade for sections */
+  background-color: #161b22;
 }
 
 .border-primary-color {
-  border-color: #30363d; /* Border color similar to GitHub's separator lines */
+  border-color: #30363d;
 }
 
 .text-secondary-color {
-  color: #8b949e; /* Muted secondary text color */
+  color: #8b949e;
 }
 
 .card {
   @apply p-6 rounded-lg shadow-md;
-  background-color: #161b22; /* Same as primary background for cards */
+  background-color: #161b22;
   color: #c9d1d9;
-  border: 1px solid #30363d; /* Subtle border for card separation */
+  border: 1px solid #30363d;
 }
 
-.bg-primary-color{
-  @apply bg-blue-600;
+/* Modern gradient animations */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #ffffff;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Link hover effects */
+a {
+  transition: all 0.3s ease;
+}
+
+/* Loading animation for images */
+img {
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
 }
