@@ -118,7 +118,7 @@ const Hero = () => {
                   <div className="w-[260px] md:w-[340px] h-[260px] md:h-[340px] rounded-full blur-2xl bg-cyan-400 opacity-30"></div>
                 </div>
                 {/* Profile image with gradient border */}
-                <div className="relative bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 p-2 rounded-full shadow-2xl z-10">
+                <div className="relative bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 p-2 rounded-full shadow-2xl ml-10 z-10">
                     <img
                     src={Profile}
                     alt="Profile"
