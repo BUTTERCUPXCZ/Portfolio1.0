@@ -10,7 +10,7 @@ const Contact = () => {
      <div className='grid md:grid-cols-2 gap-12 place-items-center'> 
         <div className="space-y-8">
            <div className='text-gray-300'>
-            <h3 className='text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'>About Me</h3>
+            <h3 className='text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300'>About Me</h3>
             <p className='text-gray-400 text-lg leading-relaxed max-w-lg'>
             As a dedicated Third-year Computer Science student, I am focused on building a solid foundation in software engineering. I aim to apply these skills in internships and collaborative projects, preparing myself for a successful career in tech.
             </p>
@@ -71,7 +71,7 @@ const Contact = () => {
             
             <button
               type = 'submit'
-              className='w-full mt-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105' 
+              className='w-full mt-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25' 
             >
                 Send Message
             </button>

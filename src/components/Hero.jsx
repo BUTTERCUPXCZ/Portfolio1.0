@@ -13,7 +13,7 @@ import Reveal from './Reveal';
 
 const Hero = () => {
   return (
-    <div className='mt-24 max-w-[1400px] mx-auto relative px-6'>
+    <div className='mt-24 max-w-[1200px] mx-auto relative px-6'>
        <div className='grid md:grid-cols-2 place-items-center gap-12 min-h-[80vh]'>
           <motion.div
              initial = {{ opacity: 0, y: -50}}
@@ -29,7 +29,7 @@ const Hero = () => {
               transition={{ duration: 0.8 }}
               className='inline-block'
             >
-              <span className='px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm'>
+              <span className='px-4 py-2 bg-gradient-to-r from-blue-500/20 to-blue-400/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm'>
                 Available for work
               </span>
             </motion.div>
@@ -42,7 +42,7 @@ const Hero = () => {
             ]}
              speed={50}
              repeat={Infinity}
-             className='font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-2xl md:text-4xl mb-4 block'
+             className='font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-200 text-2xl md:text-4xl mb-4 block'
             
             />
 
@@ -55,7 +55,7 @@ const Hero = () => {
               
               >
                  HEY, I'M <br />
-                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'>IVAN ELTAGONDE</span>
+                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300'>IVAN ELTAGONDE</span>
 
              </motion.h1>
 
@@ -83,7 +83,7 @@ const Hero = () => {
             <motion.a
                 href="/Resume.pdf" download
                 whileHover={{ scale: 1.05, boxShadow: '0px 0px 20px rgba(59, 130, 246, 0.4)' }}
-                className='z-10 cursor-pointer font-bold text-white md:w-auto px-6 py-3 border-2 border-blue-500 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all duration-300'
+                className='z-10 cursor-pointer font-bold text-white md:w-auto px-6 py-3 border-2 border-blue-500 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300'
             >
                 Download CV
             </motion.a>
@@ -91,13 +91,13 @@ const Hero = () => {
             
 
              <div className='flex gap-6 flex-row text-4xl md:text-5xl text-blue-400 z-20'>
-                <motion.a whileHover={{scale: 1.2, color: '#60a5fa' }} href='https://github.com/BUTTERCUPXCZ'>
+                <motion.a whileHover={{scale: 1.2, color: '#58a6ff' }} href='https://github.com/BUTTERCUPXCZ'>
                     <AiOutlineGithub/>
                 </motion.a>
-                <motion.a whileHover={{scale: 1.2, color: '#60a5fa' }} href='https://www.linkedin.com/in/ivan-eltagonde-38a853312/'>
+                <motion.a whileHover={{scale: 1.2, color: '#58a6ff' }} href='https://www.linkedin.com/in/ivan-eltagonde-38a853312/'>
                     <AiOutlineLinkedin/>
                 </motion.a>
-                <motion.a whileHover={{scale: 1.2, color: '#f472b6' }} href='https://www.instagram.com/ivan.eltagonde/'>
+                <motion.a whileHover={{scale: 1.2, color: '#58a6ff' }} href='https://www.instagram.com/ivan.eltagonde/'>
                     <AiOutlineInstagram/>
                 </motion.a>
 

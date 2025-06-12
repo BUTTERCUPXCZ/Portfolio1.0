@@ -16,8 +16,8 @@ html {
 
 body {
   font-family: "Space Grotesk", sans-serif;
-  background-color: #000000;
-  color: #c9d1d9;
+  background-color: #0d1117;
+  color: #e6edf3;
   overflow-x: hidden;
 }
 
@@ -27,30 +27,30 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: #21262d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(180deg, #58a6ff, #1f6feb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #2563eb, #7c3aed);
+  background: linear-gradient(180deg, #388bfd, #0969da);
 }
 
 h2 {
   @apply text-xl md:text-4xl;
-  color: #f0f6fc;
+  color: #e6edf3;
 }
 
 p {
   @apply text-xl tracking-tight leading-relaxed;
-  color: #c9d1d9;
+  color: #e6edf3;
 }
 
 span {
-  @apply text-blue-600;
+  @apply text-blue-500;
 }
 
 .shiny-effect {
@@ -58,7 +58,7 @@ span {
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.1), transparent 70%);
+  background: radial-gradient(circle, rgba(88, 166, 255, 0.15), rgba(31, 111, 235, 0.1), transparent 70%);
   animation: float 6s ease-in-out infinite;
 }
 
@@ -72,7 +72,7 @@ span {
 }
 
 .bg-primary-color {
-  background-color: #161b22;
+  background-color: #21262d;
 }
 
 .border-primary-color {
@@ -80,13 +80,13 @@ span {
 }
 
 .text-secondary-color {
-  color: #8b949e;
+  color: #7d8590;
 }
 
 .card {
   @apply p-6 rounded-lg shadow-md;
-  background-color: #161b22;
-  color: #c9d1d9;
+  background-color: #21262d;
+  color: #e6edf3;
   border: 1px solid #30363d;
 }
 
@@ -117,13 +117,13 @@ span {
 
 /* Selection styling */
 ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(88, 166, 255, 0.3);
   color: #ffffff;
 }
 
 /* Focus styles */
 *:focus {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #58a6ff;
   outline-offset: 2px;
 }
 

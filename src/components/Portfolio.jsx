@@ -60,7 +60,7 @@ const Portfolio = () => {
     <div className="max-w-[1200px] mx-auto p-6 md:my-20" id="portfolio">
       <Reveal>
         <div className="text-center mb-16">
-          <h3 className="text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+          <h3 className="text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">
             Featured Projects
           </h3>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -71,7 +71,7 @@ const Portfolio = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div key={index} className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl overflow-hidden border border-gray-700/50 backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               
               {/* Image Section */}
               <div className="relative overflow-hidden">
