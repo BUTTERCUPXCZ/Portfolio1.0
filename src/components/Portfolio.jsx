@@ -1,7 +1,7 @@
 import React from 'react';
 import project1 from '../assets/project1.png';
 import project2 from '../assets/project2.png';
-import project3 from '../assets/project3.png';
+import project3 from '../assets/project3.png'
 import project4 from '../assets/project4.png';
 import project5 from '../assets/project5.png';
 import { AiFillGithub } from 'react-icons/ai';
@@ -37,11 +37,11 @@ const projects = [
   },
   {
     img: project4,
-    title: 'Login System',
-    description: 'A system with Protected Route and I used the React.js for frontend and Node js for backend and the database is MYSQL.',
+    title: 'BCDNHS GRADEBOOK',
+    description: 'Grading System for Faculties Built with ReactJS (frontend), Node.js (backend), and MySQL(database)',
     links: {
       site: '#',
-      github: 'https://github.com/BUTTERCUPXCZ',
+      github: 'https://github.com/AelCee8103/OnlineGradeBook.git',
     },
   },
   {
