@@ -10,7 +10,7 @@ const experiences = [
   },
   {
     company: 'Personal Projects',
-    period: '2020 - Present',
+    period: '2022 - Present',
     description: 'Developing various applications including grading systems (Web based), bus management systems (Java application), and mobile apps to enhance my technical skills (Flutter).',
   },
 ];
