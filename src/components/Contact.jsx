@@ -2,6 +2,7 @@ import React from 'react'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal';
+import AnimatedCounter from './AnimatedCounter';
 
 const Contact = () => {
   return (
@@ -17,14 +18,16 @@ const Contact = () => {
            </div>
             <div className='grid grid-cols-3 gap-6'>
                <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 text-center'>
-                  <h3 className='text-3xl font-black text-white mb-2'>5
+                  <h3 className='text-3xl font-black text-white mb-2'>
+                    <AnimatedCounter end={5} />
                      <span className="text-blue-400">+</span>
                   </h3>
                  <p className='text-sm text-gray-400 font-medium'>Projects</p>
                </div>
 
                <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 text-center'>
-                  <h3 className='text-3xl font-black text-white mb-2'>3
+                  <h3 className='text-3xl font-black text-white mb-2'>
+                    <AnimatedCounter end={3} />
                      <span className="text-blue-400">+</span>
                   </h3>
                  <p className='text-sm text-gray-400 font-medium'>Years Experience</p>

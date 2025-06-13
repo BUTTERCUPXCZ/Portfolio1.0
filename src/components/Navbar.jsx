@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-scroll'
 import { motion } from 'framer-motion'
 
 const Navbar = () => {
     const [nav, setNav] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50
+      setScrolled(isScrolled)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const toggleNav = () => {
     setNav(!nav)
@@ -32,7 +43,14 @@ const Navbar = () => {
   }
 
   return (
-    <div className='fixed top-0 left-0 w-full backdrop-blur-md z-50'>
+    <motion.div 
+      className={`fixed top-0 left-0 w-full backdrop-blur-md z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black/20 shadow-lg' : 'bg-transparent'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
         <div className='max-w-[1200px] mx-auto  flex justify-between text-gray-200 text-xl items-center px-12 h-20'>
      
           <a href="#" className='text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-400 to-slate-300'>Ivan Eltagonde</a>
@@ -63,7 +81,7 @@ const Navbar = () => {
            </motion.div>
               
         </div>
-    </div>
+    </motion.div>
   )
 }
 

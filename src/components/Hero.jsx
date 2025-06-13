@@ -2,6 +2,7 @@ import React from 'react'
 import {TypeAnimation} from 'react-type-animation'
 import Profile from '../assets/picture.png'
 import ShinyEffect from './ShinyEffect'
+import TextReveal from './TextReveal'
 import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiNodejsSmall, DiJava, DiPhp } from 'react-icons/di';
 import {
     AiOutlineGithub,
