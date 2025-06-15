@@ -1,18 +1,17 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Reveal from './Reveal';
 import StaggeredReveal from './StaggeredReveal';
 import ScrollTriggeredIcon from './ScrollTriggeredIcon';
 import {
   DiHtml5,
   DiCss3,
-  DiBootstrap,
   DiJavascript1,
   DiReact,
   DiNodejsSmall,
   DiMysql,
   DiGithubBadge,
-  DiLaravel,
 } from 'react-icons/di';
+import { SiExpress } from 'react-icons/si';
 
 const skills = [
   {
@@ -20,7 +19,6 @@ const skills = [
     technologies: [
       { name: 'HTML', icon: <DiHtml5 className="text-orange-600" /> },
       { name: 'CSS', icon: <DiCss3 className="text-blue-600" /> },
-      { name: 'Bootstrap', icon: <DiBootstrap className="text-purple-600" /> },
       { name: 'JavaScript', icon: <DiJavascript1 className="text-yellow-500" /> },
       { name: 'React', icon: <DiReact className="text-blue-500" /> },
     ],
@@ -28,16 +26,16 @@ const skills = [
   {
     category: 'Fullstack',
     technologies: [
-      { name: 'Node Js', icon: <DiNodejsSmall className="text-green-500" /> },
-      { name: 'MYSQL', icon: <DiMysql className="text-green-600" /> },
+      { name: 'Node.js', icon: <DiNodejsSmall className="text-green-500" /> },
+      { name: 'Express.js', icon: <SiExpress className="text-white" /> },
+      { name: 'MySQL', icon: <DiMysql className="text-green-600" /> },
       { name: 'React', icon: <DiReact className="text-blue-500" /> },
       { name: 'GitHub', icon: <DiGithubBadge className="text-gray-600" /> },
-      { name: 'Laravel', icon: <DiLaravel className="text-red-600" /> },
     ],
   },
 ];
 
-const Skills = memo(() => {
+const Skills = () => {
   return (
     <>
       <div
@@ -80,8 +78,6 @@ const Skills = memo(() => {
       </div>
     </>
   );
-});
-
-Skills.displayName = 'Skills';
+};
 
 export default Skills;

@@ -1,49 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
-const ScrollVelocityScale = ({ children, maxScale = 1.1, className = "" }) => {
-  const [scrollVelocity, setScrollVelocity] = useState(0);
+const ScrollVelocityScale = ({ children, maxScale = 1.05, className = "" }) => {
   const [scale, setScale] = useState(1);
+  const lastScrollY = useRef(window.scrollY);
+  const requestRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  const updateScrollVelocity = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const velocity = Math.abs(currentScrollY - lastScrollY.current);
+    
+    // Reduce sensitivity and max scale for better performance
+    const newScale = Math.min(1 + (velocity / 400), maxScale);
+    setScale(newScale);
+    
+    lastScrollY.current = currentScrollY;
+    requestRef.current = null;
+  }, [maxScale]);
+
+  const handleScroll = useCallback(() => {
+    // Skip if we already have a frame scheduled
+    if (!requestRef.current) {
+      requestRef.current = requestAnimationFrame(updateScrollVelocity);
+    }
+  }, [updateScrollVelocity]);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    const updateScrollVelocity = () => {
-      const currentScrollY = window.scrollY;
-      const velocity = Math.abs(currentScrollY - lastScrollY);
-      
-      setScrollVelocity(velocity);
-      
-      // Convert velocity to scale (max velocity of 20 = max scale)
-      const newScale = Math.min(1 + (velocity / 200), maxScale);
-      setScale(newScale);
-      
-      lastScrollY = currentScrollY;
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollVelocity);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    // Use passive event listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Decay the scale back to 1
-    const decayInterval = setInterval(() => {
-      setScale(prev => Math.max(1, prev * 0.95));
-    }, 50);
+    // Decay the scale back to 1 - optimized to run less frequently
+    timeoutRef.current = setInterval(() => {
+      setScale(prev => {
+        const newValue = Math.max(1, prev * 0.95);
+        // If we're very close to 1, just set it to 1
+        return Math.abs(newValue - 1) < 0.01 ? 1 : newValue;
+      });
+    }, 100);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearInterval(decayInterval);
+      clearInterval(timeoutRef.current);
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
     };
-  }, [maxScale]);
+  }, [handleScroll]);
 
-  return (
+  // Only animate if scale is different from 1
+  return scale !== 1 ? (
     <motion.div
       className={className}
       animate={{ scale }}
@@ -51,7 +57,9 @@ const ScrollVelocityScale = ({ children, maxScale = 1.1, className = "" }) => {
     >
       {children}
     </motion.div>
+  ) : (
+    <div className={className}>{children}</div>
   );
 };
 
-export default ScrollVelocityScale;
+export default React.memo(ScrollVelocityScale);

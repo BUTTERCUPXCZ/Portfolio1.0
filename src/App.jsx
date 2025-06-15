@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useMemo, useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import FloatingElements from "./components/FloatingElements";
@@ -13,14 +13,40 @@ const Portfolio = lazy(() => import("./components/Portfolio"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
+// Loading component with minimum height to prevent layout shift
+const LoadingFallback = () => (
+  <div className="h-36 flex items-center justify-center">
+    <div className="text-blue-400 animate-pulse">Loading...</div>
+  </div>
+);
+
 export default function App() {
+  // Track if initial loading is complete to reduce animations on first load
+  const [isInitialLoadComplete, setIsInitialLoadComplete] = useState(false);
+  
+  // Use memo for static components to prevent unnecessary re-renders
+  const staticComponents = useMemo(() => (
+    <>
+      <ScrollProgress />
+      <ScrollToTop />
+    </>
+  ), []);
+
+  // Set initial load complete after a short delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoadComplete(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   return(
     <>
-    <ScrollProgress />
-    <FloatingElements />
+    {staticComponents}
+    <FloatingElements reducedMotion={!isInitialLoadComplete} />
     <Navbar/>
     <Hero />
-    <Suspense fallback={<div className="h-20 flex items-center justify-center"><div className="text-blue-400 animate-pulse">Loading...</div></div>}>
+    <Suspense fallback={<LoadingFallback />}>
       <SectionDivider />
       <Skills />
       <SectionDivider />
@@ -31,7 +57,6 @@ export default function App() {
       <Contact/>
       <Footer />
     </Suspense>
-    <ScrollToTop />
     </>
   )
 }

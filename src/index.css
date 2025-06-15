@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Import fonts using preconnect for faster loading */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap&display=swap&font-display=swap');
 
 * {
   margin: 0;
@@ -16,13 +17,30 @@ html {
 }
 
 body {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Space Grotesk", system-ui, sans-serif; /* Add system fallbacks */
   background-color: #0d1117;
   color: #e6edf3;
   overflow-x: hidden;
+  text-rendering: optimizeSpeed;  /* Optimize text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar - simplified */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -32,47 +50,56 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #58a6ff, #1f6feb);
+  background: #58a6ff;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #388bfd, #0969da);
+  background: #388bfd;
 }
 
+/* Apply base styles */
 h2 {
-  @apply text-xl md:text-4xl;
+  font-size: 1.25rem;
   color: #e6edf3;
 }
 
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
 p {
-  @apply text-xl tracking-tight leading-relaxed;
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+  line-height: 1.625;
   color: #e6edf3;
 }
 
 span {
-  @apply text-blue-500;
+  color: #3b82f6;
 }
 
-/* Optimized shiny effect - reduced blur and animation complexity */
+/* Optimized shiny effect - simplified for performance */
 .shiny-effect {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(88, 166, 255, 0.1), rgba(31, 111, 235, 0.05), transparent 70%);
-  animation: float 8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(88, 166, 255, 0.08), rgba(31, 111, 235, 0.03), transparent 70%);
+  will-change: transform;
+  
+  /* Simplified animation that's less resource-intensive */
+  animation: float 12s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
+/* Background and color utilities */
 .bg-primary-color {
   background-color: #21262d;
 }
@@ -85,69 +112,50 @@ span {
   color: #7d8590;
 }
 
+/* Card styling */
 .card {
-  @apply p-6 rounded-lg shadow-md;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   background-color: #21262d;
   color: #e6edf3;
   border: 1px solid #30363d;
 }
 
-/* Optimized gradient animations - reduced complexity */
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 20s ease infinite;
-}
-
-/* Optimized glass morphism effect - reduced blur */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Selection styling */
-::selection {
-  background: rgba(88, 166, 255, 0.3);
-  color: #ffffff;
-}
-
-/* Focus styles */
-*:focus {
-  outline: 2px solid #58a6ff;
-  outline-offset: 2px;
-}
-
-/* Optimized button hover effects - reduced transform intensity */
-button {
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-1px);
-}
-
-/* Optimized link hover effects */
-a {
-  transition: color 0.2s ease;
-}
-
-/* Optimized image hover effects */
+/* Performance optimized image loading */
 img {
-  transition: transform 0.2s ease;
+  content-visibility: auto; /* Modern browsers - defers offscreen images */
+  transition: opacity 300ms;
 }
 
-img:hover {
-  transform: scale(1.01);
+/* Load images with a fade-in effect */
+img.lazy {
+  opacity: 0;
+}
+img.loaded {
+  opacity: 1;
+}
+
+/* Optimize GPU acceleration for animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Focus styles with better performance */
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* Screen size performance classes */
+@media (max-width: 768px) {
+  /* Disable certain animations on mobile for better performance */
+  .disable-on-mobile {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
