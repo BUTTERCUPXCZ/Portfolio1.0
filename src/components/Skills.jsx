@@ -9,9 +9,8 @@ import {
   DiReact,
   DiNodejsSmall,
   DiMysql,
-  DiGithubBadge,
 } from 'react-icons/di';
-import { SiExpress } from 'react-icons/si';
+import { SiExpress, SiFigma, SiGithub } from 'react-icons/si';
 
 const skills = [
   {
@@ -30,7 +29,13 @@ const skills = [
       { name: 'Express.js', icon: <SiExpress className="text-white" /> },
       { name: 'MySQL', icon: <DiMysql className="text-green-600" /> },
       { name: 'React', icon: <DiReact className="text-blue-500" /> },
-      { name: 'GitHub', icon: <DiGithubBadge className="text-gray-600" /> },
+    ],
+  },
+  {
+    category: 'Tools',
+    technologies: [
+      { name: 'Figma', icon: <SiFigma className="text-purple-400" /> },
+      { name: 'GitHub', icon: <SiGithub className="text-white" /> },
     ],
   },
 ];
@@ -52,10 +57,10 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => (
             <StaggeredReveal key={index} staggerDelay={index * 0.2}>
-              <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+              <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-400/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <h3 className="text-2xl font-bold mb-6 text-center text-blue-400 group-hover:text-blue-300 transition-colors">
                   {skill.category}
