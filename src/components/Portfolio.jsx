@@ -4,6 +4,7 @@ import project2 from '../assets/project2.png';
 import project3 from '../assets/project3.png'
 import project4 from '../assets/project4.png';
 import project5 from '../assets/project5.png';
+import project6 from '../assets/project6.png';
 import { AiFillGithub } from 'react-icons/ai';
 import { FiDownload } from 'react-icons/fi';
 import Reveal from './Reveal';
@@ -58,6 +59,16 @@ const projects = [
     },
     showDownload: false
   },
+  {
+    img: project6,
+    title: 'ScholarSphere',
+    description: 'ScholarSphere is a web app that helps students find and track scholarships.',
+    links: {
+      site: '#',
+      github: 'https://github.com/BUTTERCUPXCZ/Scholarship-Finder.git',
+    },
+    showDownload: false
+  },
 ];
 
 const Portfolio = () => {
@@ -72,13 +83,13 @@ const Portfolio = () => {
             A showcase of my technical expertise through innovative solutions and creative problem-solving
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <StaggeredReveal key={index} staggerDelay={index * 0.15}>
               <div className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl overflow-hidden border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 h-full flex flex-col">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                
+
                 {/* Image Section - Uniform height */}
                 <div className="relative overflow-hidden h-48">
                   <img
@@ -117,7 +128,7 @@ const Portfolio = () => {
                         <span className='text-white'>View Code</span>
                       </a>
                     )}
-                    
+
                     {/* Download button only for projects 1-3 */}
                     {project.showDownload && (
                       <a

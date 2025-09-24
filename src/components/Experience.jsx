@@ -13,6 +13,17 @@ const experiences = [
     period: '2022 - Present',
     description: 'Developing various applications including grading systems (Web based), bus management systems (Java application), and mobile apps to enhance my technical skills (Flutter).',
   },
+  {
+    company: 'Globe Telecommunications - Software Developer Intern',
+    period: 'July 28 - August 2025',
+    description: (
+      <ul className="list-disc ml-6">
+        <li>Implemented a Deleted Cable Side bar for the admin using Typescript to lessen the time finding the cable cut X mark in the Map.</li>
+        <li>Refined data handling and retrieval speed by 10% through optimized queries and backend processes with Node.js.</li>
+        <li>Collaborated with interns to enhance an existing simulation system through brainstorming, retrospectives, and coordinated project development.</li>
+      </ul>
+    ),
+  },
 ];
 
 const Experience = () => {
@@ -25,7 +36,7 @@ const Experience = () => {
             My journey in software development and technology
           </p>
         </div>
-        
+
         <motion.div
           className="space-y-8"
           initial={{ opacity: 0, y: 50 }}
