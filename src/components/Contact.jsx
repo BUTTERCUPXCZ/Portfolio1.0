@@ -14,26 +14,10 @@ const Contact = () => {
             <h3 className='text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight'>About <span className="text-zinc-500">Me</span></h3>
             <div className="h-1 w-20 bg-zinc-700 mb-6"></div>
             <p className='text-zinc-400 text-lg leading-relaxed'>
-            As a dedicated Third-year Computer Science student, I am focused on building a solid foundation in software engineering. I aim to apply these skills in internships and collaborative projects, preparing myself for a successful career in tech.
+            I'm a passionate full-stack software developer specializing in building scalable web applications with modern technologies. With hands-on experience in React, TypeScript, Node.js, and PostgreSQL, I create robust solutions that solve real-world problems. From developing AI-powered platforms to implementing enterprise-level features, I thrive on turning complex challenges into elegant, user-friendly applications.
             </p>
            </div>
-            <div className='flex gap-8'>
-               <div className=''>
-                  <h3 className='text-4xl font-bold text-white mb-1'>
-                    <AnimatedCounter end={5} />
-                     <span className="text-zinc-500">+</span>
-                  </h3>
-                 <p className='text-sm text-zinc-500 uppercase tracking-wider'>Projects</p>
-               </div>
-
-               <div className=''>
-                  <h3 className='text-4xl font-bold text-white mb-1'>
-                    <AnimatedCounter end={3} />
-                     <span className="text-zinc-500">+</span>
-                  </h3>
-                 <p className='text-sm text-zinc-500 uppercase tracking-wider'>Years Exp.</p>
-               </div>
-            </div>
+            
         </div>
 
            <form 
