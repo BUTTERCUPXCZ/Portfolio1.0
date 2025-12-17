@@ -7,7 +7,7 @@ const LoadingScreen = ({ isLoading }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d1117]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950"
       initial={{ opacity: 1 }}
       exit={{ 
         opacity: 0,
@@ -25,15 +25,15 @@ const LoadingScreen = ({ isLoading }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300">
+          <h1 className="text-5xl font-bold mb-4 text-zinc-100 tracking-tight">
             Ivan Eltagonde
           </h1>
         </motion.div>
 
         {/* Loading Bar */}
-        <div className="h-1 w-48 bg-gray-800 rounded-full overflow-hidden mt-6 mb-4 mx-auto">
+        <div className="h-1 w-48 bg-zinc-800 rounded-full overflow-hidden mt-6 mb-4 mx-auto">
           <motion.div
-            className="h-full bg-gradient-to-r from-blue-500 to-blue-400"
+            className="h-full bg-zinc-200"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ 
@@ -45,7 +45,7 @@ const LoadingScreen = ({ isLoading }) => {
 
         {/* Loading Text */}
         <motion.div
-          className="text-center text-gray-400 text-sm"
+          className="text-center text-zinc-500 text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -58,7 +58,7 @@ const LoadingScreen = ({ isLoading }) => {
           {[0, 1, 2].map((index) => (
             <motion.div
               key={index}
-              className="w-2 h-2 rounded-full bg-blue-500"
+              className="w-2 h-2 rounded-full bg-zinc-400"
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [0.6, 1, 0.6]

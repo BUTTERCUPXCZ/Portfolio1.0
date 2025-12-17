@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Import fonts using preconnect for faster loading */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap&display=swap&font-display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -17,13 +17,18 @@ html {
 }
 
 body {
-  font-family: "Space Grotesk", system-ui, sans-serif; /* Add system fallbacks */
-  background-color: #0d1117;
-  color: #e6edf3;
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #09090b; /* Shadcn Dark Background */
+  color: #e4e4e7; /* Zinc 200 */
   overflow-x: hidden;
-  text-rendering: optimizeSpeed;  /* Optimize text rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.025em;
+  color: #fafafa; /* Zinc 50 */
+  font-weight: 600;
 }
 
 /* Reduce motion for users who prefer it */
@@ -40,28 +45,27 @@ body {
   }
 }
 
-/* Custom scrollbar - simplified */
+/* Custom scrollbar - Shadcn style (minimal) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #21262d;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #58a6ff;
-  border-radius: 4px;
+  background: #27272a; /* Zinc 800 */
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #388bfd;
+  background: #3f3f46; /* Zinc 700 */
 }
 
 /* Apply base styles */
 h2 {
   font-size: 1.25rem;
-  color: #e6edf3;
 }
 
 @media (min-width: 768px) {
@@ -71,55 +75,58 @@ h2 {
 }
 
 p {
-  font-size: 1.25rem;
-  letter-spacing: -0.025em;
-  line-height: 1.625;
-  color: #e6edf3;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  line-height: 1.75;
+  color: #a1a1aa; /* Zinc 400 */
 }
 
 span {
-  color: #3b82f6;
+  color: #e4e4e7;
 }
 
-/* Optimized shiny effect - simplified for performance */
+/* Optimized shiny effect - Spotlight style */
 .shiny-effect {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(circle, rgba(88, 166, 255, 0.08), rgba(31, 111, 235, 0.03), transparent 70%);
+  z-index: -1;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  filter: blur(80px);
   will-change: transform;
-  
-  /* Simplified animation that's less resource-intensive */
-  animation: float 12s ease-in-out infinite;
+  opacity: 0.5;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Background and color utilities */
 .bg-primary-color {
-  background-color: #21262d;
+  background-color: #09090b;
 }
 
 .border-primary-color {
-  border-color: #30363d;
+  border-color: #27272a;
 }
 
 .text-secondary-color {
-  color: #7d8590;
+  color: #a1a1aa;
 }
 
-/* Card styling */
+/* Card styling - Shadcn style */
 .card {
   padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: #21262d;
-  color: #e6edf3;
-  border: 1px solid #30363d;
+  border-radius: 0.75rem;
+  background-color: #09090b;
+  color: #fafafa;
+  border: 1px solid #27272a;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  border-color: #3f3f46;
 }
 
 /* Performance optimized image loading */
@@ -147,7 +154,7 @@ img.loaded {
 /* Focus styles with better performance */
 *:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6;
+  box-shadow: 0 0 0 2px #ffffff;
 }
 
 /* Screen size performance classes */
@@ -159,3 +166,18 @@ img.loaded {
     transform: none !important;
   }
 }
+
+@keyframes scroll {
+ 0% { transform: translateX(0); }
+ 100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+ animation: scroll 20s linear infinite;
+}
+
+
+.group:hover .animate-scroll {
+  animation-play-state: paused;
+}
+

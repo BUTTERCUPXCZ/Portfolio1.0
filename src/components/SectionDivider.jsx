@@ -8,7 +8,7 @@ const SectionDivider = ({ className = "" }) => {
   return (
     <div className={`flex justify-center my-16 ${className}`} ref={ref}>
       <motion.div
-        className="h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"
+        className="h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent"
         initial={{ width: 0 }}
         animate={isInView ? { width: "100%" } : { width: 0 }}
         transition={{ duration: 1.2, ease: "easeInOut" }}

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -21,6 +22,11 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins,
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
+      }
+    },
     build: {
       // Enable minification for better performance
       minify: 'esbuild',

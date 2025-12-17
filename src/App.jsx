@@ -18,7 +18,7 @@ const Footer = lazy(() => import("./components/Footer"));
 // Loading component with minimum height to prevent layout shift
 const LoadingFallback = () => (
   <div className="h-36 flex items-center justify-center">
-    <div className="text-blue-400 animate-pulse">Loading...</div>
+    <div className="text-white animate-pulse">Loading...</div>
   </div>
 );
 

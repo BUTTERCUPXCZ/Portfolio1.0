@@ -6,31 +6,32 @@ import AnimatedCounter from './AnimatedCounter';
 
 const Contact = () => {
   return (
-    <div className='px-6 max-w-[1200px] mx-auto md:my-20' id='contact'>
+    <div className='px-6 max-w-[1000px] mx-auto md:my-20' id='contact'>
      <Reveal>
-     <div className='grid md:grid-cols-2 gap-12 place-items-center'> 
-        <div className="space-y-8">
-           <div className='text-gray-300'>
-            <h3 className='text-4xl md:text-6xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-300'>About Me</h3>
-            <p className='text-gray-400 text-lg leading-relaxed max-w-lg'>
+     <div className='grid md:grid-cols-2 gap-16 place-items-start'> 
+        <div className="space-y-8 w-full">
+           <div className='text-zinc-300'>
+            <h3 className='text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight'>About <span className="text-zinc-500">Me</span></h3>
+            <div className="h-1 w-20 bg-zinc-700 mb-6"></div>
+            <p className='text-zinc-400 text-lg leading-relaxed'>
             As a dedicated Third-year Computer Science student, I am focused on building a solid foundation in software engineering. I aim to apply these skills in internships and collaborative projects, preparing myself for a successful career in tech.
             </p>
            </div>
-            <div className='grid grid-cols-3 gap-6'>
-               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 text-center'>
-                  <h3 className='text-3xl font-black text-white mb-2'>
+            <div className='flex gap-8'>
+               <div className=''>
+                  <h3 className='text-4xl font-bold text-white mb-1'>
                     <AnimatedCounter end={5} />
-                     <span className="text-blue-400">+</span>
+                     <span className="text-zinc-500">+</span>
                   </h3>
-                 <p className='text-sm text-gray-400 font-medium'>Projects</p>
+                 <p className='text-sm text-zinc-500 uppercase tracking-wider'>Projects</p>
                </div>
 
-               <div className='bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-6 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 text-center'>
-                  <h3 className='text-3xl font-black text-white mb-2'>
+               <div className=''>
+                  <h3 className='text-4xl font-bold text-white mb-1'>
                     <AnimatedCounter end={3} />
-                     <span className="text-blue-400">+</span>
+                     <span className="text-zinc-500">+</span>
                   </h3>
-                 <p className='text-sm text-gray-400 font-medium'>Years Experience</p>
+                 <p className='text-sm text-zinc-500 uppercase tracking-wider'>Years Exp.</p>
                </div>
             </div>
         </div>
@@ -38,43 +39,43 @@ const Contact = () => {
            <form 
            action="https://getform.io/f/alllnlpa"
            method = "POST"
-           className="w-full max-w-lg bg-gradient-to-br from-gray-900/50 to-gray-800/30 p-8 rounded-2xl border border-gray-700/50"
+           className="w-full space-y-6"
            id="form"
            >
-
-            <h4 className='text-white font-bold text-2xl mb-6 text-center'>
+            <h4 className='text-white font-bold text-2xl mb-2'>
               Let's Connect
             </h4>
+            <p className="text-zinc-400 text-sm mb-6">Send me a message and I'll get back to you.</p>
             
             <div className="space-y-4">
               <input 
               type="text"
               id='name'
-              placeholder='Your Name'
+              placeholder='Name'
               name='name'
-              className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors'    
+              className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors'    
               />
 
               <input 
                 type="email"
                 id='email'
-                placeholder='Your Email'
+                placeholder='Email'
                 name='email'
-                className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors'    
+                className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors'    
                 />
 
               <textarea
                 id='message'
-                placeholder='Your Message'
-                rows='5'
+                placeholder='Message'
+                rows='4'
                 name='message'
-                className='w-full rounded-lg border border-gray-600 bg-gray-800/50 py-3 px-4 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors resize-none'    
+                className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors resize-none'    
                 />
             </div>
             
             <button
               type = 'submit'
-              className='w-full mt-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25' 
+              className='mt-6 px-8 py-3 bg-white text-black font-bold rounded-md hover:bg-zinc-200 transition-all duration-300 tracking-wide' 
             >
                 Send Message
             </button>
