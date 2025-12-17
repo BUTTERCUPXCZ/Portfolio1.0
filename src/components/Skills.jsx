@@ -11,7 +11,7 @@ import {
   DiMysql,
   DiPostgresql,
 } from 'react-icons/di';
-import { SiExpress, SiFigma, SiGithub, SiPrisma, SiReact, SiNestjs, SiRedis } from 'react-icons/si';
+import { SiExpress, SiFigma, SiGithub, SiPrisma, SiReact, SiNestjs, SiRedis, SiOpenai, SiGooglegemini, SiAnthropic } from 'react-icons/si';
 import { FaLayerGroup } from 'react-icons/fa';
 
 const skills = [
@@ -41,9 +41,11 @@ const skills = [
   {
     category: 'Tools',
     technologies: [
-      { name: 'Figma', icon: <SiFigma className="text-pink-500" /> },
       { name: 'Git', icon: <SiGithub className="text-orange-600" /> },
       { name: 'GitHub', icon: <SiGithub className="text-white" /> },
+      { name: 'ChatGPT', icon: <SiOpenai className="text-green-500" /> },
+      { name: 'Claude', icon: <SiAnthropic className="text-orange-400" /> },
+      { name: 'Gemini Pro', icon: <SiGooglegemini className="text-blue-500" /> },
     ],
   },
 ];
