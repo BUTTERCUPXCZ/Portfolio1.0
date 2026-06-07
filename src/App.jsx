@@ -1,84 +1,46 @@
-import React, { Suspense, lazy, useMemo, useState, useEffect } from "react";
+import React, { Suspense, lazy } from "react";
+import { motion, useScroll } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import FloatingElements from "./components/FloatingElements";
-import ScrollProgress from "./components/ScrollProgress";
-import ScrollToTop from "./components/ScrollToTop";
-import SectionDivider from "./components/SectionDivider";
-import LoadingScreen from "./components/LoadingScreen";
-import { AnimatePresence } from "framer-motion";
 
-// Lazy load components that are below the fold
+// Below-the-fold sections stay lazy
 const Skills = lazy(() => import("./components/Skills"));
 const Experience = lazy(() => import("./components/Experience"));
 const Portfolio = lazy(() => import("./components/Portfolio"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
-// Loading component with minimum height to prevent layout shift
 const LoadingFallback = () => (
   <div className="h-36 flex items-center justify-center">
-    <div className="text-white animate-pulse">Loading...</div>
+    <span className="font-mono text-xs tracking-widest2 uppercase text-muted animate-pulse">
+      Loading —
+    </span>
   </div>
 );
 
 export default function App() {
-  // State to control the loading screen
-  const [isLoading, setIsLoading] = useState(true);
-  // Track if initial loading is complete to reduce animations on first load
-  const [isInitialLoadComplete, setIsInitialLoadComplete] = useState(false);
-  
-  // Use memo for static components to prevent unnecessary re-renders
-  const staticComponents = useMemo(() => (
-    <>
-      <ScrollProgress />
-      <ScrollToTop />
-    </>
-  ), []);
+  const { scrollYProgress } = useScroll();
 
-  // Handle initial loading and animation states
-  useEffect(() => {
-    // Simulate loading time (minimum 2 seconds for good UX)
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2200);
-    
-    // Set animation state for components after loading
-    const animationTimer = setTimeout(() => {
-      setIsInitialLoadComplete(true);
-    }, 2500);
-    
-    return () => {
-      clearTimeout(loadingTimer);
-      clearTimeout(animationTimer);
-    };
-  }, []);
+  return (
+    <div className="relative">
+      {/* Scroll progress — orange hairline */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-accent origin-left z-[70]"
+        style={{ scaleX: scrollYProgress }}
+      />
 
-  return(
-    <>
-      <AnimatePresence>
-        {isLoading && <LoadingScreen isLoading={isLoading} />}
-      </AnimatePresence>
-      
-      {!isLoading && (
-        <>
-          {staticComponents}
-          <FloatingElements reducedMotion={!isInitialLoadComplete} />
-          <Navbar/>
-          <Hero />
-          <Suspense fallback={<LoadingFallback />}>
-            <SectionDivider />
-            <Skills />
-            <SectionDivider />
-            <Experience />
-            <SectionDivider />
-            <Portfolio />
-            <SectionDivider />
-            <Contact/>
-            <Footer />
-          </Suspense>
-        </>
-      )}
-    </>
-  )
+      {/* Page frame */}
+      <div className="pointer-events-none fixed inset-x-4 inset-y-0 z-50 hidden md:block border-x border-line" />
+
+      <Navbar />
+      <Hero />
+      <Suspense fallback={<LoadingFallback />}>
+        <Skills />
+        <Experience />
+        <Portfolio />
+        <Contact />
+        <Footer />
+      </Suspense>
+    </div>
+  );
 }

@@ -1,20 +1,48 @@
 import React from 'react'
-import { FaGithubSquare, FaInstagram } from 'react-icons/fa'
 
-const Footer = () => {
-  return (
-    <div className='max-w-[1000px] mx-auto flex justify-between items-center p-6 md:p-20 text-sm mt-12 border-t border-zinc-800'>
-      <div className='space-y-4'>
-         <h3 className='text-2xl text-zinc-200 font-semibold'>Ivan.</h3>
-         <div className='flex flex-row gap-6 text-zinc-400 text-4xl'>
-           <a href="https://github.com/BUTTERCUPXCZ" className="hover:text-white transition-colors duration-300"><FaGithubSquare size={24} /></a>
-           <a href="https://www.instagram.com/ivan.eltagonde/" className="hover:text-white transition-colors duration-300"><FaInstagram size={24} /></a>
-         </div>
-      </div>
-       <p className='text-zinc-500'>@2025 Ivan Eltagonde</p>
-      
+const Footer = () => (
+  <footer className="border-t border-ink">
+    {/* Giant sign-off */}
+    <div className="px-4 sm:px-8 py-10 overflow-hidden">
+      <h2
+        aria-hidden="true"
+        className="font-display uppercase tracking-tight leading-none text-ink/10 text-[14vw] whitespace-nowrap select-none"
+      >
+        Ivan Eltagonde
+      </h2>
     </div>
-  )
-}
+
+    <div className="border-t border-line px-4 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-4 font-mono text-[11px] sm:text-xs uppercase tracking-widest2 text-muted">
+      <span>© 2026 Ivan Eltagonde — All rights reserved</span>
+      <div className="flex gap-6">
+        <a
+          href="https://github.com/BUTTERCUPXCZ"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-sweep hover:text-accent transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/ivan-eltagonde-38a853312/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-sweep hover:text-accent transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://www.instagram.com/ivan.eltagonde/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-sweep hover:text-accent transition-colors"
+        >
+          Instagram
+        </a>
+      </div>
+      <span>Doc. end — 005/005</span>
+    </div>
+  </footer>
+)
 
 export default Footer

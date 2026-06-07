@@ -1,76 +1,89 @@
 import React from 'react'
-import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import { motion } from 'framer-motion'
-import Reveal from './Reveal';
-import AnimatedCounter from './AnimatedCounter';
+import SectionHeader from './SectionHeader'
 
-const Contact = () => {
-  return (
-    <div className='px-6 max-w-[1000px] mx-auto md:my-20' id='contact'>
-     <Reveal>
-     <div className='grid md:grid-cols-2 gap-16 place-items-start'> 
-        <div className="space-y-8 w-full">
-           <div className='text-zinc-300'>
-            <h3 className='text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight'>About <span className="text-zinc-500">Me</span></h3>
-            <div className="h-1 w-20 bg-zinc-700 mb-6"></div>
-            <p className='text-zinc-400 text-lg leading-relaxed'>
-            I'm a passionate full-stack software developer specializing in building scalable web applications with modern technologies. With hands-on experience in React, TypeScript, Node.js, and PostgreSQL, I create robust solutions that solve real-world problems. From developing AI-powered platforms to implementing enterprise-level features, I thrive on turning complex challenges into elegant, user-friendly applications.
-            </p>
-           </div>
-            
+const ease = [0.22, 1, 0.36, 1]
+
+const Field = ({ label, ...props }) => (
+  <label className="block">
+    <span className="font-mono text-[11px] uppercase tracking-widest2 text-muted block mb-2">
+      {label}
+    </span>
+    {props.rows ? (
+      <textarea
+        {...props}
+        className="w-full bg-transparent border-b border-ink py-3 text-ink placeholder-muted/70 focus:border-accent focus:outline-none transition-colors resize-none"
+      />
+    ) : (
+      <input
+        {...props}
+        className="w-full bg-transparent border-b border-ink py-3 text-ink placeholder-muted/70 focus:border-accent focus:outline-none transition-colors"
+      />
+    )}
+  </label>
+)
+
+const Contact = () => (
+  <section id="contact" className="px-4 sm:px-8 py-20 sm:py-28">
+    <SectionHeader index="005" note="Contact" title="Let's" accentWord="talk" />
+
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      {/* About */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease }}
+        className="lg:col-span-6 space-y-6"
+      >
+        <span className="font-mono text-xs text-accent">/ABOUT</span>
+        <p className="text-lg sm:text-xl text-ink leading-relaxed">
+          I&apos;m a passionate full-stack developer specializing in scalable
+          web applications. With hands-on experience in{' '}
+          <span className="font-serif italic">React, TypeScript, Node.js,
+          and PostgreSQL</span>, I build robust solutions that solve
+          real-world problems — from AI-powered platforms to enterprise-level
+          features.
+        </p>
+        <p className="text-muted leading-relaxed">
+          I thrive on turning complex challenges into elegant, user-friendly
+          applications. Currently open to internships, freelance work, and
+          full-time roles.
+        </p>
+
+        <div className="pt-4 border-t border-line font-mono text-xs uppercase tracking-widest space-y-2 text-muted">
+          <p>Base — Manila, Philippines</p>
+          <p>
+            Status — <span className="text-accent">Open to work</span>
+          </p>
         </div>
+      </motion.div>
 
-           <form 
-           action="https://getform.io/f/alllnlpa"
-           method = "POST"
-           className="w-full space-y-6"
-           id="form"
-           >
-            <h4 className='text-white font-bold text-2xl mb-2'>
-              Let's Connect
-            </h4>
-            <p className="text-zinc-400 text-sm mb-6">Send me a message and I'll get back to you.</p>
-            
-            <div className="space-y-4">
-              <input 
-              type="text"
-              id='name'
-              placeholder='Name'
-              name='name'
-              className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors'    
-              />
+      {/* Form */}
+      <motion.form
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease, delay: 0.1 }}
+        action="https://getform.io/f/alllnlpa"
+        method="POST"
+        className="lg:col-span-6 space-y-8"
+        id="form"
+      >
+        <Field label="01 — Name" type="text" id="name" name="name" placeholder="Your name" />
+        <Field label="02 — Email" type="email" id="email" name="email" placeholder="you@example.com" />
+        <Field label="03 — Message" id="message" name="message" rows="4" placeholder="What are we building?" />
 
-              <input 
-                type="email"
-                id='email'
-                placeholder='Email'
-                name='email'
-                className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors'    
-                />
-
-              <textarea
-                id='message'
-                placeholder='Message'
-                rows='4'
-                name='message'
-                className='w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-white placeholder-zinc-600 focus:border-white focus:outline-none transition-colors resize-none'    
-                />
-            </div>
-            
-            <button
-              type = 'submit'
-              className='mt-6 px-8 py-3 bg-white text-black font-bold rounded-md hover:bg-zinc-200 transition-all duration-300 tracking-wide' 
-            >
-                Send Message
-            </button>
-
-           </form>
-            
-
-     </div>
-     </Reveal>
+        <button
+          type="submit"
+          className="group inline-flex items-center gap-3 bg-ink text-paper font-mono text-xs uppercase tracking-widest px-7 py-4 hover:bg-accent transition-colors duration-300"
+        >
+          Send Message
+          <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </button>
+      </motion.form>
     </div>
-  )
-}
+  </section>
+)
 
 export default Contact
