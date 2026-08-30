@@ -1,5 +1,13 @@
-import Poster from './components/Poster.jsx'
+import { MotionConfig } from 'motion/react'
+import Shell from './components/Shell.jsx'
 
+/* reducedMotion="user" makes every Motion animation on the page honour the
+   operating system setting. The CSS media query alone does not reach these —
+   Motion animates with JavaScript, not CSS transitions. */
 export default function App() {
-  return <Poster />
+  return (
+    <MotionConfig reducedMotion="user">
+      <Shell />
+    </MotionConfig>
+  )
 }

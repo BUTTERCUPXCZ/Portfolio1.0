@@ -22,6 +22,8 @@ export const identity = {
   fullName: 'Ivan Madelo Eltagonde',
   initials: 'IE',
   title: 'Backend-focused Full-Stack Developer',
+  // Shown next to your location. Set to null to hide it.
+  availability: 'Open to work',
   availabilityDetail:
     'Open to internships, freelance work, and full-time roles.',
   since: '2022',
@@ -49,8 +51,8 @@ export const location = {
 /* ----------------------------------------------------------------- CONTACT */
 export const contact = {
   email: 'ivaneltagonde5@gmail.com',
-  phoneDisplay: '0908 393 0052',
-  phoneE164: '+639083930052',
+  phoneDisplay: '0920 605 7567',
+  phoneE164: '+639206057567',
   // true = show your phone number on the website. false = CV only.
   showPhone: true,
   cv: {
@@ -97,12 +99,6 @@ export const experience = [
       },
       { label: 'Facebook', href: 'https://www.facebook.com/inventivlabs' },
     ],
-    // One sentence for the poster. null falls back to the first highlight.
-    oneLiner:
-      'Multi-tenant CRM for agencies; Playwright and Droidwright automation engines.',
-    // true = show the full `highlights` list on the page instead of oneLiner.
-    // Space on one screen is finite, so use it for the roles that matter most.
-    showHighlights: true,
     highlights: [
       'Contributed to the system design and infrastructure development of an OnlyFans CRM for agencies, enabling centralized management of 10+ creators per organization with isolated sessions and built-in PPV and tip monetization.',
       'Engineered a Playwright-based browser automation engine to streamline repetitive content-management workflows.',
@@ -114,6 +110,7 @@ export const experience = [
       'TypeScript',
       'Python',
       'Flask',
+      'FastAPI',
       'DynamoDB',
       'S3',
       'Playwright',
@@ -132,9 +129,6 @@ export const experience = [
     start: 'Jul 2025',
     end: 'Aug 2025',
     links: [],
-    oneLiner:
-      'Cut cable-fault identification time by 60% and backend response times by 10%.',
-    showHighlights: false,
     highlights: [
       'Built a Deleted Cable sidebar for the admin console in TypeScript, cutting cable-fault identification time by 60%.',
       'Improved backend response times by 10% through optimized queries and Node.js data-handling processes.',
@@ -154,8 +148,6 @@ export const experience = [
     start: 'Jan 2027',
     end: null,
     links: [],
-    oneLiner: 'One sentence summarising the role.',
-    showHighlights: false,
     highlights: [
       'What you built and what it changed.',
     ],
@@ -172,15 +164,9 @@ export const education = [
     degree: 'B.S. Computer Science',
     locationLine: 'Davao City, Philippines',
     start: '2022',
-    end: 'August 2026',
-    endNote: 'Expected',
+    end: 'September 2026',
+    endNote: 'Graduated:',
     link: null,
-    coursework: [
-      'Database Systems',
-      'Software Engineering 1 & 2',
-      'Web Development',
-      'Software Development Fundamentals',
-    ],
   },
 ]
 
@@ -188,24 +174,6 @@ export const education = [
 /* Each group is one row in the Stack section. `code` is a short tag kept for
  * reference. Add or remove items freely — order here is order on screen. */
 export const skills = [
-  {
-    id: 'languages',
-    code: 'LG',
-    group: 'Languages',
-    items: ['JavaScript', 'TypeScript', 'Python', 'SQL', 'HTML', 'CSS'],
-  },
-  {
-    id: 'frontend',
-    code: 'FE',
-    group: 'Frontend',
-    items: [
-      'React',
-      'Electron',
-      'Tailwind CSS',
-      'TanStack Query',
-      'Shadcn/ui',
-    ],
-  },
   {
     id: 'backend',
     code: 'BE',
@@ -215,6 +183,7 @@ export const skills = [
       'NestJS',
       'Express',
       'Flask',
+      'FastAPI',
       'RESTful APIs',
       'WebSocket / Socket.IO',
       'Redis',
@@ -231,6 +200,24 @@ export const skills = [
       'Prisma ORM',
       'Supabase',
       'NeonDB',
+    ],
+  },
+  {
+    id: 'languages',
+    code: 'LG',
+    group: 'Languages',
+    items: ['JavaScript', 'TypeScript', 'Python', 'SQL', 'HTML', 'CSS'],
+  },
+  {
+    id: 'frontend',
+    code: 'FE',
+    group: 'Frontend',
+    items: [
+      'React',
+      'Electron',
+      'Tailwind CSS',
+      'TanStack Query',
+      'Shadcn/ui',
     ],
   },
   {
@@ -254,16 +241,22 @@ export const skills = [
       'Gemini',
     ],
   },
-  {
-    id: 'core',
-    code: 'CC',
-    group: 'Core Competencies',
-    items: [
-      'Full-Stack Development',
-      'API Design',
-      'Authentication & Authorization',
-    ],
-  },
+]
+
+/* --------------------------------------------------------------- CORE STACK */
+/* The handful a recruiter should see in the first ten seconds. The full list
+ * lives in `skills` above and on the Stack page. Keep this to about ten. */
+export const coreStack = [
+  'TypeScript',
+  'Python',
+  'React',
+  'Node.js',
+  'NestJS',
+  'FastAPI',
+  'Flask',
+  'PostgreSQL',
+  'Redis',
+  'Playwright',
 ]
 
 /* ---------------------------------------------------------------- PROJECTS */
@@ -274,19 +267,80 @@ export const skills = [
  * links: null for anything that does not exist. `download` may be a path in
  *        public/ ("/downloads/x.zip") or a full https:// link.
  * hidden: true -> keeps the entry here but takes it off the website.
- * oneLiner: short version shown on the page. null falls back to `summary`. */
+ * context: who it was built for. 'Personal project', a company name, or null. */
 export const projects = [
+  {
+    slug: 'only-automation',
+    title: 'Only Automation',
+    tag: 'Agency Automation Platform',
+    year: '2026',
+    context: 'Inventiv',
+    featured: false,
+    hidden: false,
+    image: null,
+    summary:
+      'A cross-platform desktop app and five-service backend running OnlyFans and Fansly agency operations. Contributed to the system design and infrastructure: one session drives many devices without tripping device detection, by making a single headless anti-detect browser per creator the source of truth.',
+    stack: [
+      'Electron',
+      'React 19',
+      'TypeScript',
+      'Flask',
+      'FastAPI',
+      'NestJS',
+      'Playwright',
+      'DynamoDB',
+      'Postgres',
+      'Redis',
+      'Render',
+    ],
+    links: {
+      github: null,
+      live: null,
+      download: null,
+    },
+  },
+  {
+    slug: 'clickstream',
+    title: 'Clickstream',
+    tag: 'Social Automation Fleet',
+    year: '2026',
+    context: 'Inventiv',
+    featured: false,
+    hidden: false,
+    image: null,
+    summary:
+      'A fleet of real Android phones on real SIM data growing social accounts across TikTok, Instagram, YouTube and X. No emulators, proxies or root: each phone drives the real app through Android Accessibility Services, with per-account behaviour derived from a hash of the username so no two accounts move in lockstep.',
+    stack: [
+      'FastAPI',
+      'Python',
+      'React',
+      'TypeScript',
+      'Flutter',
+      'Kotlin',
+      'PostgreSQL',
+      'Supabase',
+      'Redis',
+      'Gemini',
+      'Render',
+      'Netlify',
+    ],
+    links: {
+      github: null,
+      live: null,
+      download: null,
+    },
+  },
   {
     slug: 'buds-ai',
     title: 'Buds AI',
     tag: 'AI Study Platform',
     year: '2025',
+    context: 'Personal project',
     featured: true,
     hidden: false,
     image: 'buds-ai',
-    oneLiner: 'AI study platform built on Gemini 2.5 Flash.',
     summary:
-      'An AI-powered study platform for smarter learning — note summarization, quiz generation, and personalized study assistance powered by Gemini 2.5 Flash.',
+      'An AI-powered study platform for smarter learning, with note summarization, quiz generation, and personalized study assistance powered by Gemini 2.5 Flash.',
     stack: [
       'React',
       'TypeScript',
@@ -471,7 +525,7 @@ export const seo = {
   ogImage: '/og.png',
   ogImageAlt: 'Ivan Eltagonde — Backend-focused Full-Stack Developer',
   // Must match the LIGHT --color-ground in src/index.css.
-  themeColor: '#fbfbfa',
+  themeColor: '#0d0e10',
   twitterHandle: null,
   locale: 'en_PH',
 }
@@ -479,6 +533,7 @@ export const seo = {
 /* Do not edit below this line. */
 export const profile = {
   identity,
+  coreStack,
   location,
   contact,
   social,

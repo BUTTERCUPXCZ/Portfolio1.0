@@ -32,6 +32,21 @@ const imageKeys = existsSync(projectDir)
   ? readdirSync(projectDir).map((file) => file.replace(/\.[^.]+$/, ''))
   : []
 
+const dupes = (list) => list.filter((v, i, a) => a.indexOf(v) !== i)
+
+for (const role of profile.experience) {
+  const repeated = dupes(role.stack ?? [])
+  if (repeated.length) {
+    fail(`experience "${role.id}": stack lists ${repeated.join(', ')} more than once`)
+  }
+}
+for (const group of profile.skills) {
+  const repeated = dupes(group.items)
+  if (repeated.length) {
+    fail(`skills "${group.id}": lists ${repeated.join(', ')} more than once`)
+  }
+}
+
 const seenSlugs = new Set()
 for (const project of profile.projects) {
   if (seenSlugs.has(project.slug)) fail(`duplicate project slug "${project.slug}"`)
@@ -42,6 +57,10 @@ for (const project of profile.projects) {
       `project "${project.slug}": no file named "${project.image}.*" in ` +
         `src/assets/projects/ (available: ${imageKeys.join(', ') || 'none'})`
     )
+  }
+  const repeatedStack = dupes(project.stack ?? [])
+  if (repeatedStack.length) {
+    fail(`project "${project.slug}": stack lists ${repeatedStack.join(', ')} more than once`)
   }
   if (project.featured && !project.image) {
     fail(

@@ -10,7 +10,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "analyze": "vite build --mode analyze"
+    "analyze": "vite build --mode analyze",
+    "icons": "node scripts/build-icons.mjs",
+    "portrait": "python3 scripts/build-portrait.py"
   },
   "dependencies": {
     "motion": "^13.1.1",
@@ -29,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.5.5",
     "globals": "^17.11.0",
     "rollup-plugin-visualizer": "^7.1.1",
+    "simple-icons": "^16.29.0",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.2"
   }
