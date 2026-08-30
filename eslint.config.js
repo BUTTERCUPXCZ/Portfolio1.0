@@ -6,29 +6,45 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
+
+  // Node-side files: build config and the content validator.
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['vite.config.js', 'eslint.config.js', 'scripts/**/*.{js,mjs}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+    rules: js.configs.recommended.rules,
+  },
+
+  // Browser-side application code.
+  {
+    files: ['src/**/*.{js,jsx}'],
+    ...js.configs.recommended,
+    languageOptions: {
+      ecmaVersion: 'latest',
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } },
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
+  },
+  {
+    files: ['src/**/*.{js,jsx}'],
+    ...react.configs.flat.recommended,
+    settings: { react: { version: '19.2' } },
+  },
+  { files: ['src/**/*.{js,jsx}'], ...react.configs.flat['jsx-runtime'] },
+  { files: ['src/**/*.{js,jsx}'], ...reactHooks.configs.flat['recommended-latest'] },
+  {
+    files: ['src/**/*.{js,jsx}'],
+    plugins: { 'react-refresh': reactRefresh },
     rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
+      // Plain JSX project — no PropTypes, no TypeScript
+      'react/prop-types': 'off',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

@@ -1,120 +1,230 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Theme is stamped onto <html> by the inline script in index.html before first
+   paint, so there is never a flash of the wrong palette. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Poster mode: the whole composition on one screen. Gated on width AND height —
+   a short window breaks a 100dvh layout as badly as a narrow one. Below this,
+   the unprefixed styles ARE the fallback: a normally scrolling document. */
+@custom-variant poster (@media (min-width: 60rem) and (min-height: 44rem));
+
+@theme static {
+  --color-paper: #f3f4f6;
+  --color-ink: #0a0a0b;
+  --color-body: #3f4249;
+  --color-dim: #4f545b;
+  --color-signal: #e8590c; /* keyboard focus ring only */
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
 
 :root {
-  --paper: #F2EEE3;
-  --ink: #1C1A15;
-  --accent: #E04E0F;
-  --muted: #564F3E;
-  --line: rgba(28, 26, 21, 0.25);
+  color-scheme: light;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #0d0e10;
+  --color-ink: #f2f3f5;
+  --color-body: #c3c7cd;
+  --color-dim: #a2a7ae;
+  --color-signal: #ff6b35;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Every date and year aligns on tabular figures. With no rules anywhere,
+     numeral alignment is the only thing holding the right column straight. */
+  time,
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-body {
-  font-family: "Archivo", sans-serif;
-  background-color: var(--paper);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* The thesis. Optical sizing does the tightening a static cut cannot. */
+@utility type-thesis {
+  font-size: clamp(2.5rem, 7.4vw, 7.25rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  color: var(--color-ink);
+  text-wrap: balance;
 }
 
-::selection {
-  background: var(--accent);
-  color: var(--paper);
+@utility type-lede {
+  font-size: clamp(1rem, 1.35vw, 1.3125rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--color-body);
+  text-wrap: pretty;
 }
 
-/* Paper grain overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.3;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+@utility type-label {
+  font-size: clamp(0.6875rem, 0.85vw, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-dim);
 }
 
-/* Hairline scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--paper);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--ink);
-  border: 2px solid var(--paper);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+@utility type-data {
+  font-size: clamp(0.9375rem, 1.05vw, 1rem);
+  line-height: 1.5;
 }
 
-/* Marquee */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* Only ever visible if the data column outgrows the viewport. */
+@utility valve-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dim) transparent;
 }
 
-.animate-marquee {
-  animation: marquee 28s linear infinite;
-}
+/* The portrait is a true 1-bit image, so inverting it for the dark theme is
+   exact rather than an approximation. Transparent paper, so no plate edge. */
+@utility dither {
+  image-rendering: pixelated;
 
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Link underline sweep */
-.link-sweep {
-  position: relative;
-}
-.link-sweep::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  height: 1px;
-  width: 100%;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.link-sweep:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* Focus */
-*:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-img {
-  content-visibility: auto;
+  :where([data-theme="dark"]) & {
+    filter: invert(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   PRINT — the screen is a poster, the paper is the full CV.
+   Rewrite the TOKENS, not the elements, or printing from dark mode emits pale
+   grey text onto white paper.
+--------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 14mm 16mm;
+  }
+
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --color-paper: #fff;
+    --color-ink: #000;
+    --color-body: #1a1a1a;
+    --color-dim: #444;
+    --color-signal: #000;
+  }
+
+  :root {
+    font-size: 10pt;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Unwind the one-screen grid into a flowing document. */
+  .poster-shell,
+  .poster-grid {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* The poster shows one line per role; paper gets every bullet. */
+  .poster-oneliner {
+    display: none !important;
+  }
+  .print-highlights {
+    display: block !important;
+  }
+
+  .type-thesis {
+    font-size: 20pt !important;
+    line-height: 1.1 !important;
+  }
+
+  .dither {
+    filter: none !important;
+    width: 26mm !important;
+  }
+
+  h2 {
+    font-size: 11pt !important;
+    break-after: avoid;
+  }
+  h3 {
+    font-size: 10.5pt !important;
+    break-after: avoid;
+  }
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+  article,
+  section {
+    break-inside: avoid;
+  }
+
+  .print-url[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #555;
   }
 }

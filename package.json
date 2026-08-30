@@ -5,37 +5,31 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "check": "node scripts/check-content.mjs",
+    "prebuild": "npm run check",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "analyze": "vite build --mode analyze",
-    "optimize-images": "node scripts/optimize-images.js"
+    "analyze": "vite build --mode analyze"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.15.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.4.0",
-    "react-scroll": "^1.9.0",
-    "react-type-animation": "^3.2.0",
-    "sharp": "^0.33.2",
-    "tailwind-merge": "^3.4.0"
+    "motion": "^13.1.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "globals": "^15.14.0",
-    "postcss": "^8.4.31",
-    "rollup-plugin-visualizer": "^5.14.0",
-    "tailwindcss": "^3.4.1",
-    "vite": "^6.0.5"
+    "@eslint/js": "^9.39.5",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.5",
+    "globals": "^17.11.0",
+    "rollup-plugin-visualizer": "^7.1.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
   }
 }

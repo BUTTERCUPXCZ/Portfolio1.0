@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#151515"/>
+  <text x="29" y="45" text-anchor="middle"
+        font-family="'Archivo Black','Arial Black','Helvetica Neue',sans-serif"
+        font-weight="900" font-size="34" letter-spacing="-1.5"
+        fill="#f2eee3">IE</text>
+  <circle cx="52" cy="42" r="4.5" fill="#e04e0f"/>
+</svg>

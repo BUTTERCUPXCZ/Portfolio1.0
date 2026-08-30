@@ -1,68 +1,52 @@
-# Performance Optimization Guide
+# Performance Notes
 
-This document outlines the performance optimizations made to the portfolio website.
+What the site currently does for performance, and what is still worth doing.
 
-## Implemented Optimizations
+## In place
 
-### 1. Reduced Animation Complexity
-- Simplified FloatingElements component
-- Added reduced motion support
-- Optimized parallax effects with throttling
+### Code splitting
+- `Navbar` + `Hero` load eagerly; `Skills`, `Experience`, `Portfolio`, `Contact`,
+  `Footer` are `React.lazy` behind one `Suspense` boundary (`src/App.jsx`).
+- `react`/`react-dom` and `motion` are pinned into their own chunks via
+  `build.rollupOptions.output.codeSplitting.groups` in `vite.config.js`, so they
+  cache independently of app code.
 
-### 2. Optimized Rendering
-- Added React.memo to prevent unnecessary re-renders
-- Implemented useMemo for static components
-- Used requestAnimationFrame for smooth animations
+### Rendering
+- `Hero` is wrapped in `React.memo`.
+- Scroll-linked animations use Motion's `useScroll` motion value driving `scaleX`,
+  so the progress bar animates off the main-thread style path instead of through
+  React state.
+- Section reveals use `whileInView` with `viewport={{ once: true }}` — each element
+  animates once and is then static.
 
-### 3. Build Optimizations
-- Updated Vite configuration for better chunking
-- Added code splitting for vendor libraries
-- Added image optimization script (Sharp)
+### Assets
+- `img { content-visibility: auto }` in `src/index.css`.
+- Project screenshots use `loading="lazy"`.
+- The marquee sets `will-change: transform`.
 
-### 4. CSS Optimizations
-- Added content-visibility for images
-- Simplified CSS animations
-- Added hardware acceleration hints
-- Added reduced motion media query
+### Motion preferences
+- `@media (prefers-reduced-motion: reduce)` collapses animation and transition
+  durations and disables smooth scrolling.
 
-## Running the Optimized Version
+## Still worth doing
 
-1. Install the new dependencies:
+1. Convert `src/assets/*.png` to WebP or AVIF and serve `srcset` — `budsAI.png`
+   is ~165 kB and is the largest asset in the bundle.
+2. Prune `public/` — `Resume.pdf`, `downloads/Bus-System_3.zip`, and the other
+   archives are copied into `dist/` verbatim (~12 MB) but nothing on the site
+   links to them.
+3. `public/downloads/project1.zip`, `project2.zip`, and `project3.zip` are 0 bytes.
+4. Self-host the Google Fonts to remove the render-blocking cross-origin request.
+5. Set long `Cache-Control` headers for `/assets/*` at the host (filenames are
+   already content-hashed).
+
+## Measuring
+
+```sh
+npm run analyze   # bundle treemap via rollup-plugin-visualizer
 ```
-npm install
-```
-
-2. Optimize images (optional but recommended):
-```
-npm run optimize-images
-```
-
-3. Run development server:
-```
-npm run dev
-```
-
-4. Build for production:
-```
-npm run build
-```
-
-## Further Optimization Tips
-
-1. Consider using Next.js for server-side rendering
-2. Implement proper image lazy loading
-3. Consider using WebP images for better compression
-4. Add proper caching headers when deploying
-
-## Notes on Mobile Performance
-
-The site now has specific optimizations for mobile devices:
-- Reduced animation complexity
-- Disabling certain animations on small screens
-- Better handling of touch events
 
 ## References
 
-- [Framer Motion Performance](https://www.framer.com/motion/guide-performance/)
-- [React Performance Optimization](https://reactjs.org/docs/optimizing-performance.html)
+- [Motion performance guide](https://motion.dev/docs/react-performance)
 - [Web Vitals](https://web.dev/vitals/)
