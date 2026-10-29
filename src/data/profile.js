@@ -92,7 +92,7 @@ export const experience = [
     role: 'Full-Stack Developer',
     employment: 'Full-time',
     locationLine: 'Davao City, Philippines',
-    start: 'May 2025',
+    start: 'Jan 2026',
     end: null,
     links: [
       {
@@ -388,6 +388,37 @@ export const projects = [
     links: {
       github: null,
       live: null,
+      download: null,
+    },
+  },
+  {
+    slug: 'caselens',
+    title: 'CaseLens',
+    tag: 'Legal Research Platform',
+    year: '2026',
+    context: 'Freelance project',
+    featured: true,
+    hidden: false,
+    image: 'caselens',
+    summary:
+      'Built for law students to eliminate the manual work of writing case reviewers — searching, reading and copying each Supreme Court decision by hand. CaseLens pulls the real decision from Lawphil, files it by subject, and writes a digest where every AI-written sentence is tied to the Court’s own paragraphs and verified by a second AI check.',
+    stack: [
+      'Python',
+      'FastAPI',
+      'PostgreSQL',
+      'SQLAlchemy',
+      'RabbitMQ',
+      'Dramatiq',
+      'React 19',
+      'TypeScript',
+      'TanStack',
+      'Tailwind CSS',
+      'Gemini',
+      'Docker',
+    ],
+    links: {
+      github: 'https://github.com/BUTTERCUPXCZ/CaseLens',
+      live: 'https://case-lens-rucm.vercel.app',
       download: null,
     },
   },
