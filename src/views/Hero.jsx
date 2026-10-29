@@ -8,9 +8,9 @@ import NameTag from '../components/NameTag.jsx'
 const github = social.find((link) => link.id === 'github')
 const current = experience.find((role) => role.end === null)
 
-/* Where each sticker sits on the panel from `md` up, by position in the
-   stickers list. Below `md` they drop into a plain wrapped row under the
-   diagram. Anything past the last slot simply joins that row. */
+/* Where each sticker sits on the panel from `lg` up, by position in the
+   stickers list. Below `lg` they drop into a plain wrapped row under the
+   name tag. Anything past the last slot simply joins that row. */
 const SLOTS = [
   'lg:absolute lg:left-[5%] lg:top-[9%]',
   'lg:absolute lg:left-[3%] lg:top-[56%]',
