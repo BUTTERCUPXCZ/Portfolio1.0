@@ -1,47 +1,33 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { identity } from '../data/profile.js'
 import { copyrightLine, timeZone } from '../data/derived.js'
+import { useClock } from '../hooks/useClock.js'
 import { useScrollSpy } from '../hooks/useScrollSpy.js'
-import Rail from './Rail.jsx'
+import Header from './Header.jsx'
+import Icon from './Icon.jsx'
 import Section from './Section.jsx'
 import Hero from '../views/Hero.jsx'
-import Experience from '../views/Experience.jsx'
+import About from '../views/About.jsx'
 import Work from '../views/Work.jsx'
+import Experience from '../views/Experience.jsx'
 import Stack from '../views/Stack.jsx'
-import Education from '../views/Education.jsx'
 import Contact from '../views/Contact.jsx'
 
-/* Module-level so the array identity is stable — useScrollSpy depends on it. */
-const SECTIONS = [
-  { id: 'top', label: 'Overview' },
+/* Module-level so the array identity is stable — useScrollSpy depends on it.
+   `top` is spied on but not listed: the name in the header already goes there. */
+const NAV = [
+  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Work' },
   { id: 'experience', label: 'Experience' },
-  { id: 'work', label: 'Projects' },
   { id: 'stack', label: 'Stack' },
-  { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
 ]
 
-/* Hoisted too: passing a fresh array on every render would tear down and
-   rebuild the IntersectionObserver on every render. */
-const SECTION_IDS = SECTIONS.map((section) => section.id)
+const SECTION_IDS = ['top', ...NAV.map((section) => section.id)]
 
 export default function Shell() {
   const active = useScrollSpy(SECTION_IDS)
-  const [time, setTime] = useState('')
-
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Date().toLocaleTimeString('en-PH', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-          timeZone,
-        })
-      )
-    tick()
-    const id = setInterval(tick, 30000)
-    return () => clearInterval(id)
-  }, [])
+  const time = useClock(timeZone)
 
   /* The site used to be four routed pages. Anything already linking to
      #/work or #/stack still lands in the right place. */
@@ -54,36 +40,50 @@ export default function Shell() {
   }, [])
 
   return (
-    <div className="page-shell mx-auto flex w-full max-w-[92rem] flex-col gap-12 px-6 py-10 lg:flex-row lg:gap-20 lg:px-12 lg:py-14">
-      <Rail sections={SECTIONS} active={active} time={time} />
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-signal focus:px-4 focus:py-2 focus:text-on-signal"
+      >
+        Skip to content
+      </a>
 
-      <div className="min-w-0 flex-1">
-        <main className="space-y-24 lg:space-y-32">
-          <Hero />
+      <Header sections={NAV} active={active} />
 
-          <Section id="experience" lead="Professional" trail="experience">
-            <Experience />
-          </Section>
+      <main id="main" className="mx-auto max-w-[76rem] px-5 sm:px-8">
+        <Hero time={time} />
 
-          <Section id="work" lead="Selected" trail="projects">
-            <Work />
-          </Section>
+        <Section id="about" title="About">
+          <About />
+        </Section>
 
-          <Section id="stack" lead="The" trail="stack">
-            <Stack />
-          </Section>
+        <Section id="work" title="Selected work">
+          <Work />
+        </Section>
 
-          <Section id="education" lead="Education">
-            <Education />
-          </Section>
+        <Section id="experience" title="Experience">
+          <Experience />
+        </Section>
 
-          <Section id="contact" lead="Get in" trail="touch">
-            <Contact />
-          </Section>
-        </main>
+        <Section id="stack" title="Stack">
+          <Stack />
+        </Section>
 
-        <p className="type-label mt-24 lg:mt-32">{copyrightLine}</p>
-      </div>
-    </div>
+        <Section id="contact" title="Get in touch">
+          <Contact time={time} />
+        </Section>
+      </main>
+
+      <footer className="type-label mx-auto flex max-w-[76rem] flex-wrap items-center justify-between gap-4 border-t border-line px-5 py-8 text-dim sm:px-8">
+        <p>{copyrightLine}</p>
+        <p>
+          {identity.title} · Building since {identity.since}
+        </p>
+        <a href="#top" className="no-print inline-flex items-center gap-1.5 hover:text-ink">
+          Back to top
+          <Icon name="arrow-up" size={14} />
+        </a>
+      </footer>
+    </>
   )
 }

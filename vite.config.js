@@ -100,10 +100,6 @@ export default defineConfig(async ({ mode }) => {
                 name: 'vendor',
                 test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
               },
-              {
-                name: 'motion',
-                test: /[\\/]node_modules[\\/](motion|motion-dom|motion-utils|framer-motion)[\\/]/,
-              },
             ],
           },
         },
@@ -114,7 +110,7 @@ export default defineConfig(async ({ mode }) => {
       open: false,
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', 'motion/react'],
+      include: ['react', 'react-dom'],
     },
   }
 })

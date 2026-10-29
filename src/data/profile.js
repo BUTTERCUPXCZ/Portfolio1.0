@@ -22,6 +22,8 @@ export const identity = {
   fullName: 'Ivan Madelo Eltagonde',
   initials: 'IE',
   title: 'Backend-focused Full-Stack Developer',
+  // The giant line at the top of the page. Two or three words at most.
+  headline: 'Full-Stack Developer',
   // Shown next to your location. Set to null to hide it.
   availability: 'Open to work',
   availabilityDetail:
@@ -240,6 +242,65 @@ export const skills = [
       'Copilot',
       'Gemini',
     ],
+  },
+]
+
+/* ---------------------------------------------------------------- STICKERS */
+/* The coloured stickers on the grid panel at the top of the page.
+ * shape:  'circle' (round), 'tag' (rounded rectangle), or 'badge' (round with
+ *         `label` running around its edge — keep that one short).
+ * color:  'teal', 'pink', 'yellow', 'orange' or 'green'.
+ * tilt:   rotation in degrees, between -12 and 12.
+ * detail: the small line under the label. null = none.
+ * Order here = reading order for screen readers. */
+export const stickers = [
+  {
+    id: 'backend',
+    shape: 'circle',
+    color: 'teal',
+    tilt: -6,
+    label: 'Backend systems',
+    detail: 'Node.js · NestJS · FastAPI',
+  },
+  {
+    id: 'automation',
+    shape: 'tag',
+    color: 'yellow',
+    tilt: -8,
+    label: 'Browser automation',
+    detail: 'Playwright',
+  },
+  {
+    id: 'ai',
+    shape: 'tag',
+    color: 'pink',
+    tilt: 7,
+    label: 'AI-powered apps',
+    detail: 'Gemini',
+  },
+  {
+    id: 'desktop',
+    shape: 'tag',
+    color: 'orange',
+    tilt: 5,
+    label: 'Desktop apps',
+    detail: 'Electron · React',
+  },
+  {
+    id: 'realtime',
+    shape: 'tag',
+    color: 'teal',
+    tilt: -10,
+    label: 'Real-time',
+    detail: 'Socket.IO · Redis',
+  },
+  {
+    id: 'status',
+    shape: 'badge',
+    color: 'green',
+    tilt: 0,
+    label: 'Open to work • Davao City •',
+    detail: null,
   },
 ]
 
@@ -524,8 +585,8 @@ export const seo = {
     'Ivan Eltagonde — backend-focused full-stack developer in Davao City, Philippines. React, TypeScript, Node.js, NestJS, and PostgreSQL.',
   ogImage: '/og.png',
   ogImageAlt: 'Ivan Eltagonde — Backend-focused Full-Stack Developer',
-  // Must match the LIGHT --color-ground in src/index.css.
-  themeColor: '#0d0e10',
+  // Browser UI colour on mobile. Matches the DARK --color-canvas in src/index.css.
+  themeColor: '#070707',
   twitterHandle: null,
   locale: 'en_PH',
 }
@@ -533,6 +594,7 @@ export const seo = {
 /* Do not edit below this line. */
 export const profile = {
   identity,
+  stickers,
   coreStack,
   location,
   contact,

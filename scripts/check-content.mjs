@@ -87,6 +87,22 @@ for (const key of imageKeys) {
   }
 }
 
+/* --- stickers -------------------------------------------------------- */
+const STICKER_SHAPES = ['circle', 'tag', 'badge']
+const STICKER_COLORS = ['teal', 'pink', 'yellow', 'orange', 'green']
+for (const sticker of profile.stickers ?? []) {
+  if (!STICKER_SHAPES.includes(sticker.shape)) {
+    fail(`sticker "${sticker.id}": shape must be one of ${STICKER_SHAPES.join(', ')}`)
+  }
+  if (!STICKER_COLORS.includes(sticker.color)) {
+    fail(`sticker "${sticker.id}": color must be one of ${STICKER_COLORS.join(', ')}`)
+  }
+  if (Math.abs(sticker.tilt ?? 0) > 12) {
+    fail(`sticker "${sticker.id}": tilt must be between -12 and 12`)
+  }
+  if (!sticker.label) fail(`sticker "${sticker.id}": label is required`)
+}
+
 /* --- required files -------------------------------------------------- */
 for (const file of [profile.contact.cv.href, profile.seo.ogImage, '/favicon.svg']) {
   if (!existsSync(resolve(root, 'public', file.slice(1)))) {
